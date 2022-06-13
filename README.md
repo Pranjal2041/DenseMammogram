@@ -32,8 +32,12 @@ You can download the pretrained models from this [url](https://csciitd-my.sharep
 
 ## Running the Code
 
-You can run an
+To generate predictions and FROC graphs using the pretrained models, run:
+`python all_graphs.py`
 
+For running individual models on other datasets, geenerate_{dataset}_preds.py have been provided.
+For example to run predictions on inbreast, run:
+`python geenerate_inbreast_preds.py`
 
 
 ## Demo
@@ -42,5 +46,9 @@ You can either use **Google Colab Demo** or **Huggingface demo**
 
 ## Citation
 
+Details Coming Soon!
+
 ## License
+
+TODO: Add License
 
