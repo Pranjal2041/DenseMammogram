@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deep learning for detection of iso-dense, obscure masses in mammographically dense breasts">
+  <meta name="keywords" content="deep learning, mammograms, cancer detection">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deep learning for detection of iso-dense, obscure masses in mammographically dense breasts</title>
+<!-- fsd -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="stylesheet" href="./static/css/prism.css"/>
+
+
+
+  <script src="./static/js/prism.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Deep learning for detection of iso-dense, obscure masses in mammographically dense breasts</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- Krithika Rangarajan, Pranjal Agarwal, Dhruv Kumar Gupta, Rohan Dhanakshirur, Akhil Baby, Chandan Pal, Arun Kumar Gupta, Smriti Hari, Subhashis Banerjee & Chetan Arora  -->
+
+            <span class="author-block">
+              <a href="https://orcid.org/0000-0001-5376-6390">Krithika Rangarajan</a>*<sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/Pranjal2041">Pranjal Aggarwal</a>*<sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/Pranjal2041">Dhruv Kumar Gupta</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/Pranjal2041">Rohan Dhanakshirur</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://in.linkedin.com/in/akhil-baby-55b644119/">Akhil Baby</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.uk/scholar?as_q=&num=10&btnG=Search+Scholar&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=%22Chandan%20Pal%22&as_publication=&as_ylo=&as_yhi=&as_allsubj=all&hl=en">Chandan Pal</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.uk/scholar?as_q=&num=10&btnG=Search+Scholar&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=%22Arun%20Kumar%20Gupta%22&as_publication=&as_ylo=&as_yhi=&as_allsubj=all&hl=en">Arun Kumar Gupta</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.uk/scholar?as_q=&num=10&btnG=Search+Scholar&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=%22Smriti%20Hari%22&as_publication=&as_ylo=&as_yhi=&as_allsubj=all&hl=en">Smriti Hari</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cse.iitd.ac.in/~suban/">Subhashis Banerjee</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cse.iitd.ac.in/~chetan/">Chetan Arora</a><sup>1</sup>
+            </span>
+            </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Indian Institute of Technology Delhi</span>
+            <br>
+            <span class="author-block"><sup>2</sup>All India Institute of Medical Sciences, Delhi</span>
+            <br>
+            <span class="author-block">*Equal Contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://link.springer.com/article/10.1007/s00330-023-09717-7"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.com/Pranjal2041"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="ai ai-arxiv"></i> -->
+                      <i class="fa fa-terminal"></i>
+                      <!-- <i class="fa-solid fa-dinosaur"></i> -->
+                      <!-- <i class="ai ai-presentation"></i> -->
+
+                  </span>
+                  <span>Demo</span>
+                </a>
+              </span>
+
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Pranjal2041/DenseMammogram"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/Pranjal2041/AdaptiveConsistency"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Discarded Code <Section> -->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/adaptive_consistency_teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Adaptive-Consistency</span> iteratively samples, reducing the average number of samples.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+      <div class="hero-body">
+          <div class="content has-text-justified is-size-4">
+              
+              <p>We propose a novel deep-learning based method for incorporating traditional radiology principles to improve cancer detection in mammographically dense breasts.</p>
+          </div>
+          <!-- <video id="teaser" autoplay muted playsinline height="100%">
+             Insert GIF here
+            <source src="./static/videos/adaptive_consistency_teaser.mp4"
+                    type="video/mp4">
+          </video>     --> 
+          <figure class="image is-8by6">
+              <img id="animatedGif" src="./static/images/overview.png">
+            </figure>
+          <h2 class="subtitle has-text-centered">
+              <span class="dnerf">Summary of our Study Methodology.
+          </h2>
+
+      </div>
+
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified is-size-4">
+          <p>
+            We present a deep learning model designed to address the challenges of detecting isodense and obscure masses in mammographically dense breasts. By incorporating traditional radiology principles our model demonstrates improved sensitivity in detecting malignancies compared to baseline networks. We showcase the performance of our method on diagnostic and screening mammography datasets, highlighting its potential to enhance cancer detection accuracy in dense breasts and its applicability to different patient distributions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section" id="highlights">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column ">
+          
+            <h2 class="title is-3">Key Highlights 🌟</h2>
+            
+            <!-- List View using bulma template -->
+            <!-- <div class="columns is-centered">
+              <div class="column is-four-fifths"> -->
+                <div class="content has-text-justified is-size-4">
+                  <ul>
+                    <li>🎯Addresses the <strong>challenge of detecting isodense, obscure masses and mammographically dense breasts</strong> in deep learning networks.</li>
+                    <li>🤝<strong>Collaborative network design</strong> and incorporation of traditional radiology teaching improves cancer detection in dense breasts.</li>
+                    <li>📊<strong>Demonstrates increased sensitivity for malignancy</strong> in diagnostic mammography dataset and external validation test set with a screening mammography distribution.</li>
+                    <li>🌐<strong>Our method's accuracy</strong> is translatable to <strong>different patient distributions</strong>, showcasing its potential in both screening and diagnostic mammography datasets.</li>
+                    <li>🩺<strong>Clinical relevance:</strong> Incorporating medical knowledge into neural network design can help overcome limitations associated with specific modalities, improving performance on mammographically dense breasts.</li>
+                  </ul>
+                </div>
+              <!-- </div>
+
+            </div> -->
+            <!--/ List View using bulma template -->
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<!-- Results Section -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+              <h2 class="title is-3">Results Summary</h2>
+              <strong>We evaluate our method across different settings and datasets.</strong>
+
+              <!--row1, colored objects-->
+              <figure class="image is-64by64">
+                  <img src="static/images/dm_froc.png">
+                  <strong>FROC curve on Diagnostic Mammography Dataset for different settings</strong>
+              </figure>
+              <hr>
+              <!--row2, math reasoning-->
+              <figure class="image is-64by64">
+                <img src="static/images/sm_froc.png">
+                <strong>FROC curve on Screening Mammography Dataset for different settings</strong>
+              </figure>
+              <hr>
+
+              <figure class="image is-64by64">
+                <img src="static/images/inbreast.png">
+                <strong>Performance on public benchmark InBreast</strong>
+              </figure>
+              <hr>
+              
+              <figure class="image is-64by64">
+                <img src="static/images/component.png">
+                <strong>Component Wise Analysis of Our Method</strong>
+              </figure>
+
+
+              <!--row3, algorithmic reasoning-->
+              <!-- <figure>
+                  <img src="https://user-images.githubusercontent.com/15002544/202954797-68e8d45d-3435-4abf-96e4-f10371b55e38.png" height="512" width="512">
+                  <br>
+                  <strong>Component Wise Analysis</strong>
+              </figure> -->
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- <section class="section" id="library">
+  <div class="container is-max-desktop">
+    <div class="box has-background-light">
+      <h2 class="title is-3">Using Adaptive-Consistency in your code</h2>
+      Using Adaptive-Consistency in your code takes only a couple of line changes. (TODO: Add diffs)
+      <pre class=" language-python"><code class=" language-python diff-highlight language-diff">
+    from adaptive_consistency import AC
+
+    outputs = []
+    for input in dataset:
+        output = openai.Completion.Create(input, *args, **kwargs)
+        outputs.append(output)
+        if AC(stop_criteria = 'beta').should_stop(outputs):
+            break
+      </code></pre>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre><code>TY  - JOUR
+      AU  - Rangarajan, Krithika
+      AU  - Agarwal, Pranjal
+      AU  - Gupta, Dhruv Kumar
+      AU  - Dhanakshirur, Rohan
+      AU  - Baby, Akhil
+      AU  - Pal, Chandan
+      AU  - Gupta, Arun Kumar
+      AU  - Hari, Smriti
+      AU  - Banerjee, Subhashis
+      AU  - Arora, Chetan
+      PY  - 2023
+      DA  - 2023/05/20
+      TI  - Deep learning for detection of iso-dense, obscure masses in mammographically dense breasts
+      JO  - European Radiology
+      AB  - To analyze the performance of deep learning in isodense/obscure masses in dense breasts. To build and validate a deep learning (DL) model using core radiology principles and analyze its performance in isodense/obscure masses. To show performance on screening mammography as well as diagnostic mammography distribution.
+      SN  - 1432-1084
+      UR  - https://doi.org/10.1007/s00330-023-09717-7
+      DO  - 10.1007/s00330-023-09717-7
+      ID  - Rangarajan2023
+      ER  - 
+      </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://link.springer.com/article/10.1007/s00330-023-09717-7">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Pranjal2041/DenseMammogram" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Template adapted from <a href="http://nerfies.github.io/">Nerfies</a> by Keunhong Park et
+            al.
+            and uses <a href="https://bulma.io/">Bulma</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
