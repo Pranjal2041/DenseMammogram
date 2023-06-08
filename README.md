@@ -4,7 +4,7 @@
 <div style='display:flex; gap: 0.25rem; '>
 <a href='https://huggingface.co/spaces/Pranjal2041/DenseBreastCancerDetection'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue'></a> 
 <a href='https://link.springer.com/article/10.1007/s00330-023-09717-7'><img src='https://img.shields.io/badge/Springer-Research%20Paper-red?style=plastic&logo=pubmed'></a> 
-<a href='https://link.springer.com/article/10.1007/s00330-023-09717-7'><img src='https://img.shields.io/badge/Website%20-blue?style=plastic&logo=appveyor'></a> 
+<a href='https://pranjal2041.github.io/DenseMammogram'><img src='https://img.shields.io/badge/Website%20-informational?logo=appveyor'></a> 
 <!-- <img alt="AppVeyor" src="https://img.shields.io/appveyor/build/Pranjal2041/DenseMammogram"> -->
 </div>
 
